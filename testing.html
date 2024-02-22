@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <style type="text/css">
+            #myboxes {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .box {
+                height: 200px;
+                width: 150px;
+                color: white;
+                margin-right: 50px;
+            }
+
+            .box:first-child {
+                background-color: red;
+                margin-right: 50px;
+            }
+
+            .box:last-child {
+                background-color: blue;
+            }
+        </style>
+    </head>
+
+    <body>
+        <script language="javascript">
+
+            function accountClose() {
+
+                answer = confirm("Are you sure you want to close your account?");
+
+                if (answer) {
+
+                    alert("Your account is closed");
+
+                }
+
+                else {
+
+                    alert("Your account will NOT be closed at this time");
+
+                }
+            }
+
+            accountClose();
+        </script>
+    </body>
+</html>

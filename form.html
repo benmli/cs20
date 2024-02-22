@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+    <title>Form Demo</title>
+    <style type="text/css">
+        label,.section-label {width: 100px; display:inline-block;
+        font-weight: 700 }
+
+        label.sub-label {width: auto; font-weight: 400}
+        input[type='submit'] {display:block; margin-top: 20px;
+                              background-color: #F1F02A}
+        input[type='submit'] {padding: 5px; font-size: 20px;
+                              font-family: arial,helvetica}
+
+    </style>
+</head>
+
+<body>
+    <form method='get' action='index.html'>  <!-- # = stay on the same page -->
+        <label>Name:</label>
+        <input type='text' placeholder='enter your name' name='name'/>
+        <br/>
+
+        <label>State:</label><input type='text' value='Massachusetts' name='state'/>
+        <br/>
+
+        <div class='section-label'>What do you want for lunch:</div>
+        <label for='salad' class='sub-label'>Salad</label><input type='checkbox' name='salad' id='salad'/>
+        <label for='sandwich' class='sub-label'>Sandwich</label><input type='checkbox' name='sandwich' id='sandwich'/>
+        <br/>
+
+        <label>City:</label>
+        <select size='1' name='town'>
+            <option>Somerville</option>
+            <option>Boston</option>
+            <option>Cambridge</option>
+        </select>
+
+        <input type='submit' value='Go Now!'/>
+    </form>
+
+
+</body>
+</html>

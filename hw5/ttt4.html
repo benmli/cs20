@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Tic Tac Toe (Part 4)</title>
+    <style type="text/css">
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 50px;
+        }
+
+        #turn {
+            text-align: center;
+            margin: 0 auto;
+            padding: 3px;
+            font-size: 25px;
+            border: 1px solid black;
+            width: 100%;
+            max-width: 220px;
+            background-color: rgb(208, 208, 208);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        #winCondition {
+            text-align: center;
+            margin: 0 auto;
+            padding: 3px;
+            font-size: 25px;
+            border: 1px solid green;
+            width: 100%;
+            max-width: 180px;
+            background-color: rgb(196, 218, 235);
+            display: none;
+        }
+
+        .board {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            font-family: Arial, Helvetica;
+        }
+
+        .square {
+            height: 90px;
+            width: 90px;
+            margin: 5px;
+            box-sizing: border-box;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 90px;
+        }
+
+        .square:hover {
+            background-color: rgb(151, 178, 199);
+        }
+
+        .filledSquare:hover {
+            background-color: white;
+        }
+
+        #startButton {
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+            margin: auto;
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 25px;
+            background-color: green;
+            color: white;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tic Tac Toe</h1>
+
+    <div id = "turn">
+        Player <span id="playerTurn">X</span>'s Turn
+
+        <script>
+            curPlayer = Math.random() < 0.5 ? "X" : "O";
+            document.getElementById("playerTurn").innerText = curPlayer;
+        </script>
+    </div>
+
+    <div id = "winCondition">
+        Win Condition
+    </div>
+
+    <div class = "board">
+        <script>
+            // handles when "Play Again" button is pressed
+            function startGame() {
+                // hides button
+                document.getElementById("startButton").style.display = "none";
+
+                // randomly chooses Player X or O to start the game
+                curPlayer = Math.random() < 0.5 ? "X" : "O";
+
+                // shows container for player turn
+                let turnBox = document.getElementById("turn");
+                turnBox.style.display = "block";
+
+                // displays current player's turn on screen
+                let player = document.getElementById("playerTurn");
+                player.innerText = curPlayer;
+
+                // clear the board by traversing through squares array
+                squareArray = document.getElementsByClassName("square");
+                squareArray = Array.from(squareArray);
+                for (let i = 0; i < squareArray.length; i++) {
+                    let curSquare = squareArray[i];
+                    curSquare.innerText = "";
+
+                    // make win condition disappear from screen
+                    let win = document.getElementById("winCondition");
+                    win.style.display = "none";
+
+                    // bring back hover effect and event handler
+                    curSquare.classList.remove("filledSquare");
+                    curSquare.addEventListener("click", onSquareClick);
+                }
+            }
+
+            const NUM_SQUARES = 9;
+            for (i = 0; i < NUM_SQUARES; i++)
+            {
+                id = "sq"+i;
+                document.write("<div class='square' id='" + id + "'></div>");
+            }
+
+            // converts squares collection to array
+            let squareArray = document.getElementsByClassName("square");
+            squareArray = Array.from(squareArray);
+
+            for (let i = 0; i < squareArray.length; i++) {
+                let curSquare = squareArray[i];
+                curSquare.addEventListener("click", onSquareClick);
+            }
+
+            // handles when a square is clicked
+            function onSquareClick() {
+                alert(this.id + " was clicked");
+                this.innerText = curPlayer;
+                
+                // keeps track of current moves
+                let moves = [];
+                squareArray.forEach(function(square, index) {
+                    let sqText = square.innerText;
+                    moves[index] = (sqText == "") ? "-" : sqText;
+                });
+
+                // don't allow square to be hovered or clicked again if filled
+                this.classList.add("filledSquare");
+                this.removeEventListener("click", onSquareClick);
+
+                // examine win conditions for 3 rows across and 3 columns down
+                let winConditions = [];
+                for (let col = 0; col < 3; col++) {
+                    // get square array index of first element in current row
+                    let curRow = col * 3;
+
+                    // get win condition string for current row
+                    let rowCondition = squareArray[curRow].innerText 
+                                       + squareArray[curRow + 1].innerText
+                                       + squareArray[curRow + 2].innerText;
+                
+                    winConditions.push(rowCondition);
+
+                    // get win condition string for current column
+                    let colCondition = squareArray[col].innerText
+                                        + squareArray[col + 3].innerText
+                                        + squareArray[col + 6].innerText;
+                    winConditions.push(colCondition);
+                }
+
+                // examine win conditions on board for two diagonals
+                let firstDiagonal = squareArray[0].innerText +
+                                    squareArray[4].innerText +
+                                    squareArray[8].innerText;
+                let secondDiagonal = squareArray[2].innerText +
+                                     squareArray[4].innerText +
+                                     squareArray[6].innerText;
+                winConditions.push(firstDiagonal);
+                winConditions.push(secondDiagonal);
+
+                // checks if player X and/or Y won the game
+                let xWin = winConditions.indexOf("XXX");
+                let oWin = winConditions.indexOf("OOO");
+
+                let status = document.getElementById("winCondition");
+
+                // checks if Player X or O won
+                if (xWin != -1) {
+                    status.innerText = "Player X wins!"
+                    endGame();
+                } else if (oWin != -1) {
+                    status.innerText = "Player O wins!";
+                    endGame();
+                }
+
+                // checks if there are any remaining moves possible
+                let isStalemate = true;
+                for (let i = 0; i < 9; i++) {
+                    if (squareArray[i].innerText == "") {
+                        isStalemate = false;
+                        break;
+                    }
+                }
+
+                // ends the game if stalemate
+                if (isStalemate) {
+                    status.innerText = "Stalemate!";
+                    endGame();
+                }
+
+                // changes current player to the opponent
+                curPlayer = (curPlayer == "X") ? "O": "X";
+                document.getElementById("playerTurn").innerText = curPlayer;
+            }
+
+            // handles when game is over
+            function endGame() {
+                // turns off event handlers and hovering for squares
+                squareArray.forEach(function(square) {
+                    square.removeEventListener("click", onSquareClick);
+                    square.classList.add("filledSquare");
+                })
+                
+                // hides player turn
+                let turnBox = document.getElementById("turn");
+                turnBox.style.display = "none";
+
+                // shows win condition
+                let status = document.getElementById("winCondition");
+                status.style.display = "block";
+
+                // shows "Play Again" button
+                document.getElementById("startButton").style.display = "block";
+            }
+        </script>
+    </div>
+
+    <input type = "button" value = "Play Again" id = "startButton"
+        onclick = "startGame()" />
+</body>
+</html>

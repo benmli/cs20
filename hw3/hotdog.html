@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Joe's Hotdog Stand</title>
+    <style type="text/css">
+        body {
+            background-color: rgb(174, 198, 205);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 25px;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: rgb(126, 1, 1);
+        }
+
+        .receipt {
+            box-sizing: border-box;
+            border: solid 3px #000;
+            width: 25%;
+            margin: auto;
+            padding: 5px;
+            background-color: rgba(255, 255, 255, 0.637);
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Joe's Hotdog Stand</h1>
+    <h2>Receipt</h2>
+
+    <div id='results'>&nbsp;</div>
+    <div class='receipt'>
+    <script>
+        /* takes in a floating point number and returns a string that shows the
+           number rounded to exactly 2 places
+         */
+        function showMoney(number)
+        {            
+            /* rounds the 2nd decimal */
+            number *= 100;
+            number = Math.round(number);
+            number /= 100;
+
+            /* converts floating point num to string */
+            let numString = number.toString();
+            
+            let pointIndex = numString.indexOf(".");
+
+            /* if only one decimal, add a 0 */
+            if (pointIndex == numString.length - 2) {
+                numString += "0";
+            } 
+            
+            /* return number with 2 decimal places */
+            return numString.substring(0, pointIndex + 3);
+        }
+
+        const dogPrice = 4.65;
+        const fryPrice = 3.75;
+        const drinkPrice = 1.89;
+
+        numDogs = prompt("How many hotdogs do you want?");
+        numFries = prompt("How many fries do you want?");
+        numSoda = prompt("How many sodas do you want?");
+
+        var totalDogCost = numDogs * dogPrice;
+        var totalFryCost = numFries * fryPrice;
+        var totalDrinkCost = numSoda * drinkPrice;
+
+        document.write("Quantity of hotdogs ordered: " + numDogs + "<br>");
+        document.write("Total cost of hotdogs: $" + showMoney(totalDogCost)
+                                                 + "<br><br>");
+
+        document.write("Quantity of french fries ordered: " + numFries
+                                                            + "<br>");
+        document.write("Total cost of french fries: $" + showMoney(totalFryCost)
+                                                      + "<br><br>");
+
+        document.write("Quantity of drinks ordered: " + numSoda + "<br>");
+        document.write("Total cost of drinks: $" + showMoney(totalDrinkCost)
+                                                + "<br><br>");
+
+        var subtotal = totalDogCost + totalFryCost + totalDrinkCost;
+        
+        
+        document.write("Subtotal before discount: $" + showMoney(subtotal)
+                                                     + "<br>");
+
+        //adds 10% discount if subtotal (before tax) is at least $25
+        if (subtotal >= 25) {
+            var discount = subtotal * 0.10;
+            subtotal -= discount;
+            document.write("Discount: $" + showMoney(discount) + "<br>");
+        } else {
+            document.write("Discount: $0.00 <br>");
+        }
+
+        document.write("Subtotal after discount: $"
+                        + showMoney(subtotal)+ "<br><br>");
+
+        var taxAmount = subtotal * 0.0625;
+        finalTotal = subtotal + taxAmount;
+
+        document.write("Tax Amount: $" + showMoney(taxAmount) + "<br>");
+        document.write("Final total: $" + showMoney(finalTotal));
+    </script>
+    </div>
+    
+</body>
+</html>

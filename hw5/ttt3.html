@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Tic Tac Toe (Part 3)</title>
+    <style type="text/css">
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 50px;
+        }
+
+        .turn {
+            text-align: center;
+            margin: 0 auto;
+            padding: 3px;
+            font-size: 25px;
+            border: 1px solid black;
+            width: 100%;
+            max-width: 220px;
+            background-color: rgb(208, 208, 208);
+            margin-bottom: 15px;
+        }
+
+        .winCondition {
+            text-align: center;
+            margin: 0 auto;
+            padding: 3px;
+            font-size: 20px;
+            border: 1px solid black;
+            width: 100%;
+            max-width: 180px;
+            background-color: rgb(196, 218, 235);
+        }
+
+        .board {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            font-family: Arial, Helvetica;
+        }
+
+        .square {
+            height: 90px;
+            width: 90px;
+            margin: 5px;
+            box-sizing: border-box;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 90px;
+        }
+
+        .square:hover {
+            background-color: rgb(151, 178, 199);
+        }
+
+        .startButton {
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+            margin: auto;
+            padding: 10px;
+            font-size: 25px;
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tic Tac Toe</h1>
+
+    <div class = "turn">
+        Player <span id="playerTurn">X</span>'s Turn
+
+        <script>
+            curPlayer = Math.random() < 0.5 ? "X" : "O";
+            document.getElementById("playerTurn").innerText = curPlayer;
+        </script>
+    </div>
+
+    <div class = "winCondition">
+        Win Condition
+    </div>
+
+    <div class = "board">
+        <script>
+            // handles when "Start Game" button is pressed
+            function startGame() {
+                curPlayer = Math.random() < 0.5 ? "X" : "O";
+                document.getElementById("playerTurn").innerText = curPlayer;
+
+                // clear the board by traversing through squares array
+                let squareArray = document.getElementsByClassName("square");
+                for (let i = 0; i < squareArray.length; i++) {
+                    let curSquare = squareArray[i];
+                    curSquare.innerText = "";
+                }
+            }
+
+            const NUM_SQUARES = 9;
+            for (i = 0; i < NUM_SQUARES; i++)
+            {
+                id = "sq"+i;
+                document.write("<div class='square' id='" + id + "'></div>");
+            }
+
+            // handles squares being clicked
+            let squareArray = document.getElementsByClassName("square");
+            for (let i = 0; i < squareArray.length; i++) {
+                let curSquare = squareArray[i];
+
+                curSquare.addEventListener("click", function() {
+                    // only allows square to be filled if it is empty
+                    if (curSquare.innerText == "") {
+                        alert(curSquare.id + " was clicked");
+                        curSquare.innerText = curPlayer;
+
+                        // changes current player to the opponent
+                        curPlayer = (curPlayer == "X") ? "O": "X";
+                        document.getElementById("playerTurn").innerText = curPlayer;
+                    }
+                });
+            }
+        </script>
+    </div>
+
+    <input type ="button" value="Start Game" class="startButton"
+        onclick="startGame()" />
+</body>
+</html>

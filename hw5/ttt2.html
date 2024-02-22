@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Tic Tac Toe (Part 2)</title>
+    <style type="text/css">
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 50px;
+        }
+
+        .turn {
+            text-align: center;
+            margin: 0 auto;
+            padding: 3px;
+            font-size: 30px;
+            border: 1px solid black;
+            width: 100%;
+            max-width: 220px;
+            background-color: rgb(208, 208, 208);
+            margin-bottom: 15px;
+        }
+
+        .winCondition {
+            text-align: center;
+            margin: 0 auto;
+            padding: 3px;
+            font-size: 25px;
+            border: 1px solid black;
+            width: 100%;
+            max-width: 180px;
+            background-color: rgb(196, 218, 235);
+        }
+
+        .board {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            font-family: Arial, Helvetica;
+        }
+
+        .square {
+            height: 90px;
+            width: 90px;
+            margin: 5px;
+            box-sizing: border-box;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 90px;
+        }
+
+        .square:hover {
+            background-color: rgb(151, 178, 199);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tic Tac Toe</h1>
+
+    <div class = "turn">
+        Player X's Turn
+    </div>
+
+    <div class = "winCondition">
+        Win Condition
+    </div>
+
+    <div class = "board">
+        <script>
+            const NUM_SQUARES = 9;
+            for (i = 0; i < NUM_SQUARES; i++)
+            {
+                id = "sq"+i;
+                document.write("<div class='square' id='" + id + "'></div>");
+            }
+
+            document.getElementById("sq0").innerText = "X";
+            document.getElementById("sq4").innerText = "X";
+            document.getElementById("sq7").innerText = "O";
+        </script>
+    </div>
+</body>
+</html>

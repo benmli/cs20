@@ -1,0 +1,62 @@
+.headbar {
+    box-sizing: border-box;
+    border: solid 3px #000;
+    width: 100%;
+    display: flex;
+    background-color: #f1f12ae7;
+    padding: 4px;
+    opacity: 0.8;
+}
+
+header {
+    font-family: Verdana, Helvetica;
+    margin-left: 8px;
+    margin-right: auto;
+}
+
+nav {
+    font-family: Monaco, "Lucida Console";
+    background-color: #f1f12ae7;
+    height: 100%;
+    max-height: 25px;
+    margin-right: 8px;
+    margin-left: auto;
+}
+
+a:hover {
+    color: rgb(255, 0, 0);
+}
+
+body {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 100vh;
+    background-image: url("rainbow.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.info-text {
+    margin-top: 35px;
+    font-family: Verdana, Helvetica;
+    font-weight: 600;
+    text-align: center;
+    line-height: 2;
+    padding: 10px;
+}
+
+footer {
+    margin-top: auto;
+    font-family: Verdana, Helvetica;
+    font-weight: 600;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    background-color: rgb(86, 85, 83);
+    color: #ffffff;
+    opacity: 0.95;
+}

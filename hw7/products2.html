@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Products</title>
+    <!-- <link rel="stylesheet" type="text/css" href="products2_style.css"> -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <script language="javascript">
+        $.get("https://benjaminl.sgedu.site/cs20_hw7/products.json",
+        function(data) {
+            console.log("Raw data: \n" + data);
+            str = JSON.stringify(data);
+            document.getElementById('json-data').innerHTML = str;
+            console.log("String data: \n" + str);
+
+            str = "<ul>";
+            data.forEach(function(product) {
+                str += "<li>"
+                    + product.name
+                    + product.description
+                    + product.price;
+                
+                str += "<li>"
+                product.categories.forEach(function(category) {
+                    str += category;
+                });
+            });
+
+            document.getElementById('json-list').innerHTML = str;
+        })
+    </script>
+
+    <div id="json-data">&nbsp;</div>
+    <div id="json-list">&nbsp;</div>
+
+</body>
+
+</html>

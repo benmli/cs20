@@ -1,0 +1,92 @@
+{
+    "products": [
+        {
+            "name": "Vintage T-shirt",
+            "description": "Tie-Dye Grateful Dead T-shirt",
+            "price": 33,
+            "categories": [
+                "Clothing",
+                "Vintage",
+                "T-shirts"
+            ]
+        },
+        {
+            "name": "Basic T-shirt",
+            "description": "Plain White T-shirt",
+            "price": 15,
+            "categories": [
+                "Clothing",
+                "T-shirts"
+            ]
+        },
+        {
+            "name": "Pair of Jeans",
+            "description": "Medium Blue Baggy-Fit Jeans",
+            "price": 50,
+            "categories": [
+                "Clothing",
+                "Pants"
+            ]
+        },
+        {
+            "name": "Pair of Cargo Pants",
+            "description": "Black Wrangler Premium Cargo Pants",
+            "price": 30,
+            "categories": [
+                "Clothing",
+                "Pants"
+            ]
+        },
+        {
+            "name": "Chocolate Bar",
+            "description": "Milk Chocolate Bar, 1.5 oz",
+            "price": 3,
+            "categories": [
+                "Food",
+                "Snacks"
+            ]
+        },
+        {
+            "name": "Pack of Gummies",
+            "description": "Nerds Gummy Clusters, Very Berry Flavor",
+            "price": 4.99,
+            "categories": [
+                "Food",
+                "Snacks"
+            ]
+        },
+        {
+            "name": "Bag of Chips",
+            "description": "Large Bag of Doritos, Cool Ranch Flavor",
+            "price": 6,
+            "categories": [
+                "Food",
+                "Snacks"
+            ]
+        },
+        {
+            "name": "Pain Reliever Pills",
+            "description": "Advil Max-Strength Ibuprofen Tablets",
+            "price": 20,
+            "categories": [
+                "Medicine"
+            ]
+        },
+        {
+            "name": "Cold Medicine",
+            "description": "DayQuil Daytime Relief LiquiCaps",
+            "price": 25,
+            "categories": [
+                "Medicine"
+            ]
+        },
+        {
+            "name": "Allergy Pills",
+            "description": "Zyrtec 24 Hour Allergy Relief Tablets",
+            "price": 20,
+            "categories": [
+                "Medicine"
+            ]
+        }
+    ]
+}

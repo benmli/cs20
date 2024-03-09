@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Products</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+    <style>
+        body,html {
+            background-color: rgb(188, 211, 247);
+            text-align: center;
+        }
+        products {
+            width: 60%;
+            margin: 50px auto 50px auto;
+            padding: 15px;
+        }
+
+        product {
+            display: block;
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-family: Verdana, Helvetica;
+        }
+
+        name {
+            font-size: 18px;
+            font-weight: bold;
+            display: block;
+        }
+
+
+        description {
+            font-style: italic;
+        }
+
+        description:after {
+            content: ": "
+        }
+
+
+        price:before {
+            content: "$";
+        }
+
+        price {
+            font-weight: bold;
+        }
+
+        categories {
+            margin-top: 5px;
+            display: block;
+        }
+
+        category {
+            display: inline-block;
+            background-color: #f4f4e2;
+            color: #5f5d5d;
+            padding: 4px 8px;
+            margin-right: 4px;
+            border-radius: 7px;
+        }
+    </style>
+</head>
+
+<body>
+    <select id="categoriesDropdown">
+        <option value="">Select Category</option>
+    </select>
+
+    <button id="filterButton">
+        Filter
+    </button>
+    
+    <div id="matchedProducts">&nbsp;</div>
+
+    <script language="javascript">
+        $(document).ready(function() {
+            $.get("https://benmli.github.io/cs20/hw7/products.json",
+            function(data) {
+                let dropdown = $('#categoriesDropdown');
+
+                // adds category options to dropdown menu
+                data.products.forEach(function(product) {
+                    product.categories.forEach(function(category) {
+                        let selector = "option[value = '" + category + "']";
+
+                        // adds option to dropdown if hasn't been added yet
+                        // avoids duplicate categories
+                        if (dropdown.find(selector).length == 0) {
+                            dropdown.append("<option value='" + category + "'>" + category + "</option>");
+                        }
+                    });
+                });
+
+                $('#filterButton').click(function() {
+                    let clickedCategory = $('#categoriesDropdown').val();
+                    let matchedProducts = '';
+
+                    data.products.forEach(function(product) {
+                        // prints out product if matches clicked category
+                        if (product.categories.includes(clickedCategory)) {
+                            matchedProducts += "<name>" + product.name + "</name>";
+                        }
+                    });
+
+                    $('#matchedProducts').html(matchedProducts);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

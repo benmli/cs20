@@ -4,40 +4,93 @@
 <head>
     <meta charset="utf-8">
     <title>Products</title>
-    <!-- <link rel="stylesheet" type="text/css" href="products2_style.css"> -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"
     integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
     crossorigin="anonymous"></script>
+    <style>
+        body,html {
+            background-color: rgb(188, 211, 247);
+            text-align: center;
+        }
+        products {
+            width: 60%;
+            margin: 50px auto 50px auto;
+            padding: 15px;
+        }
+
+        product {
+            display: block;
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-family: Verdana, Helvetica;
+        }
+
+        name {
+            font-size: 18px;
+            font-weight: bold;
+            display: block;
+        }
+
+
+        description {
+            font-style: italic;
+        }
+
+        description:after {
+            content: ": "
+        }
+
+
+        price:before {
+            content: "$";
+        }
+
+        price {
+            font-weight: bold;
+        }
+
+        categories {
+            margin-top: 5px;
+            display: block;
+        }
+
+        category {
+            display: inline-block;
+            background-color: #f4f4e2;
+            color: #5f5d5d;
+            padding: 4px 8px;
+            margin-right: 4px;
+            border-radius: 7px;
+        }
+    </style>
 </head>
 
 <body>
     <script language="javascript">
-        $.get("https://benjaminl.sgedu.site/cs20_hw7/products.json",
+        $.get("https://benmli.github.io/cs20/hw7/products.json",
         function(data) {
-            console.log("Raw data: \n" + data);
-            str = JSON.stringify(data);
-            document.getElementById('json-data').innerHTML = str;
-            console.log("String data: \n" + str);
-
-            str = "<ul>";
-            data.forEach(function(product) {
-                str += "<li>"
-                    + product.name
-                    + product.description
-                    + product.price;
+            str = "<products>";
+            data.products.forEach(function(product) {
+                str += "<product>"
+                    + "<name>" + product.name + "</name><br>"
+                    + "<desription>" + product.description + "</description><br>"
+                    + "Price: <price>" + product.price + "</price><br>"
                 
-                str += "<li>"
+                str += "Categories: <categories>";
                 product.categories.forEach(function(category) {
-                    str += category;
+                    str += "<category>" + category + "</category>";
                 });
-            });
+                str += "</categories>";
 
-            document.getElementById('json-list').innerHTML = str;
+                str += "</product>";
+            });
+            str += "</products>";
+
+            document.getElementById('json-data').innerHTML = str;
         })
     </script>
 
     <div id="json-data">&nbsp;</div>
-    <div id="json-list">&nbsp;</div>
 
 </body>
 

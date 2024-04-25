@@ -2,6 +2,9 @@ var http = require('http');
 var url = require('url');
 var fs = require('fs');
 
+// set port
+var port = process.env.PORT || 3000;
+
 const MongoClient = require('mongodb').MongoClient;
 
 const connStr = "mongodb+srv://benjaminli:Strawberry13!@cluster0.7xrbawh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
@@ -61,4 +64,4 @@ http.createServer(function (req, res) {
     }
 
     res.end();
-}).listen(8080);
+}).listen(port);
